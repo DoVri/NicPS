@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,7 +29,7 @@
             background-color: rgba(0, 0, 0, 0.1);
         }
 
-        .modal-backdrop + div {
+        .modal-backdrop+div {
             overflow: auto;
         }
 
@@ -61,8 +62,68 @@
         .form-group {
             margin-bottom: 15px;
         }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ddd;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            outline: none;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.8);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .section-title h2 {
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .section-title p {
+            font-size: 12px !important;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ddd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            outline: none;
+        }
     </style>
 </head>
+
 <body style="background-color: rgba(0, 0, 0, 0)">
     <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton" data-target="#modalShow"
         data-backdrop="static" data-keyboard="false"></button>
@@ -81,59 +142,73 @@
                                                 <section class="common-box">
                                                     <div class="container">
                                                         <div class="section-title center-align">
-                                                            <h2>Login to NicPS</h2>
+                                                            <h2>Welcome To NicPS! Please login to continue</h2>
+                                                            <p
+                                                                style="color: white; font-weight: bold; margin-top: 5px; margin-bottom: 20px; font-size: 1.1em; text-transform: uppercase; letter-spacing: 1px;">
+                                                                LOGIN TO NICPS</p>
                                                         </div>
                                                         <div class="row div-content-center">
                                                             <div class="col-md-12 col-sm-12">
-                                                                <form method="POST"
-                                                                    action="/player/growid/login/validate"
-                                                                    accept-charset="UTF-8" class="" role="form"
-                                                                    required="required" autocomplete="off">
-                                                                    <input name="_token" type="hidden"
-                                                                        value="[object Object]" />
-                                                                    <div class="form-group">
-                                                                        <input id="login-name"
-                                                                            class="form-control grow-text w-100"
-                                                                            placeholder="Your NicPS Name *" name="growId"
-                                                                            type="text" />
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input id="password"
-                                                                            class="form-control grow-text w-100"
-                                                                            placeholder="Your NicPS Password *"
-                                                                            name="password" type="password" value="" />
-                                                                    </div>
-                                                                    <div class="form-group text-center">
-                                                                        <input
-                                                                            class="btn btn-lg btn-primary grow-button w-100"
-                                                                            type="submit" value="Login" />
-                                                                    </div>
-                                                                </form>
 
-                                                                <form method="GET"
-                                                                    action="https://t.me/abuhurairahid"
-                                                                    target="_blank" class="" role="form">
-                                                                    <input
-                                                                        class="btn btn-lg btn-primary grow-button orange-text w-100"
-                                                                        type="submit"
-                                                                        value="Lost your password? DM JMC4188 on Telegram" />
-                                                                </form>
+                                                                <!-- Navigation Buttons -->
+                                                                <div class="btn-container">
+                                                                    <button type="button" class="nav-btn active"
+                                                                        onclick="showLogin()">Login</button>
+                                                                    <form method="POST"
+                                                                        action="/player/growid/login/validate"
+                                                                        id="regForm" style="display: none;">
+                                                                        <input name="_token" type="hidden" value="" />
+                                                                        <input name="growId" type="hidden" value="" />
+                                                                        <input name="password" type="hidden" value="" />
+                                                                    </form>
+                                                                    <button type="button" class="nav-btn"
+                                                                        onclick="document.getElementById('regForm').submit()">Register</button>
+                                                                    <button type="button" class="nav-btn"
+                                                                        onclick="window.open('https://linktr.ee/nicteams', '_blank')">Website</button>
+                                                                </div>
 
-                                                                <form method="POST"
-                                                                    action="/player/growid/login/validate"
-                                                                    accept-charset="UTF-8" class="" role="form">
-                                                                    <input name="_token" type="hidden" value="" />
-                                                                    <input name="growId" type="hidden" value="" />
-                                                                    <input name="password" type="hidden" value="" />
-                                                                    <input
-                                                                        class="btn btn-lg btn-primary grow-button w-100"
-                                                                        type="submit"
-                                                                        value="Don't have a NicPS ID? Register here!" />
-                                                                </form>
+                                                                <!-- Login View -->
+                                                                <div id="login-section">
+                                                                    <form method="POST"
+                                                                        action="/player/growid/login/validate"
+                                                                        accept-charset="UTF-8" role="form"
+                                                                        autocomplete="off">
+                                                                        <input name="_token" type="hidden"
+                                                                            value="[object Object]" />
+                                                                        <div class="form-group">
+                                                                            <input id="login-name"
+                                                                                class="form-control grow-text w-100"
+                                                                                placeholder="Your NicPS Name *"
+                                                                                name="growId" type="text" required />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input id="password"
+                                                                                class="form-control grow-text w-100"
+                                                                                placeholder="Your NicPS Password *"
+                                                                                name="password" type="password" value=""
+                                                                                required />
+                                                                        </div>
+                                                                        <div class="form-group text-center">
+                                                                            <input
+                                                                                class="btn btn-lg btn-primary grow-button w-100"
+                                                                                type="submit" value="Login" />
+                                                                        </div>
+                                                                    </form>
+
+
+                                                                </div>
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </section>
+                                                <script>
+                                                    function showLogin() {
+                                                        // Login is the default and only view
+                                                    }
+                                                </script>
                                             </div>
                                         </div>
                                     </div>
@@ -207,4 +282,5 @@
         });
     </script>
 </body>
+
 </html>
